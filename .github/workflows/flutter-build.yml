@@ -104,7 +104,7 @@ jobs:
           sed -i "s|pub const RS_PUB_KEY: \&str = \".*\";|pub const RS_PUB_KEY: \&str = \"$RS_KEY\";|g" $CONFIG_PATH
           sed -i "s/pub const WS_RENDEZVOUS_PORT: i32 = 21118;/pub const WS_RENDEZVOUS_PORT: i32 = 55443;/g" $CONFIG_PATH
           sed -i "s|pub static ref PROD_RENDEZVOUS_SERVER: RwLock<String> = RwLock::new(\"\".to_owned());|pub static ref PROD_RENDEZVOUS_SERVER: RwLock<String> = RwLock::new(\"$ID_SERVER\".to_owned());|g" $CONFIG_PATH
-          sed -i 's|pub fn get_option(k: &str) -> String {|pub fn get_option(k: \&str) -> String {\n    if k == "api-server" {\n        return "'"$API_SERVER"'".to_owned();\n    }|g' $CONFIG_PATH
+          sed -i 's|pub fn get_option(k: &str) -> String {|pub fn get_option(k: \&str) -> String {\n    if k == "api-server" {\n        return "'"$API_SERVER"'".to_owned();\n    }\n    if k == "enable-check-update" {\n        return "N".to_owned();\n    }|g' $CONFIG_PATH
           echo "Injection successful. Previewing line 222:"
           sed -n '220,225p' $CONFIG_PATH
 
@@ -341,7 +341,7 @@ jobs:
           sed -i "s|pub const RS_PUB_KEY: \&str = \".*\";|pub const RS_PUB_KEY: \&str = \"$RS_KEY\";|g" $CONFIG_PATH
           sed -i "s/pub const WS_RENDEZVOUS_PORT: i32 = 21118;/pub const WS_RENDEZVOUS_PORT: i32 = 55443;/g" $CONFIG_PATH
           sed -i "s|pub static ref PROD_RENDEZVOUS_SERVER: RwLock<String> = RwLock::new(\"\".to_owned());|pub static ref PROD_RENDEZVOUS_SERVER: RwLock<String> = RwLock::new(\"$ID_SERVER\".to_owned());|g" $CONFIG_PATH
-          sed -i 's|pub fn get_option(k: &str) -> String {|pub fn get_option(k: \&str) -> String {\n    if k == "api-server" {\n        return "'"$API_SERVER"'".to_owned();\n    }|g' $CONFIG_PATH
+          sed -i 's|pub fn get_option(k: &str) -> String {|pub fn get_option(k: \&str) -> String {\n    if k == "api-server" {\n        return "'"$API_SERVER"'".to_owned();\n    }\n    if k == "enable-check-update" {\n        return "N".to_owned();\n    }|g' $CONFIG_PATH
           echo "Injection successful. Previewing line 222:"
           sed -n '220,225p' $CONFIG_PATH
 
@@ -503,13 +503,13 @@ jobs:
           RS_KEY: ${{ secrets.MY_RS_PUB_KEY }}
         run: |
           CONFIG_PATH="libs/hbb_common/src/config.rs"
-          sed -i "s/rs-ny\.rustdesk\.com/$ID_SERVER/g" $CONFIG_PATH
-          sed -i "s|pub const RS_PUB_KEY: \&str = \".*\";|pub const RS_PUB_KEY: \&str = \"$RS_KEY\";|g" $CONFIG_PATH
-          sed -i "s/pub const WS_RENDEZVOUS_PORT: i32 = 21118;/pub const WS_RENDEZVOUS_PORT: i32 = 55443;/g" $CONFIG_PATH
-          sed -i "s|pub static ref PROD_RENDEZVOUS_SERVER: RwLock<String> = RwLock::new(\"\".to_owned());|pub static ref PROD_RENDEZVOUS_SERVER: RwLock<String> = RwLock::new(\"$ID_SERVER\".to_owned());|g" $CONFIG_PATH
-          sed -i 's|pub fn get_option(k: &str) -> String {|pub fn get_option(k: \&str) -> String {\n    if k == "api-server" {\n        return "'"$API_SERVER"'".to_owned();\n    }|g' $CONFIG_PATH
+          gsed -i "s/rs-ny\.rustdesk\.com/$ID_SERVER/g" $CONFIG_PATH
+          gsed -i "s|pub const RS_PUB_KEY: \&str = \".*\";|pub const RS_PUB_KEY: \&str = \"$RS_KEY\";|g" $CONFIG_PATH
+          gsed -i "s/pub const WS_RENDEZVOUS_PORT: i32 = 21118;/pub const WS_RENDEZVOUS_PORT: i32 = 55443;/g" $CONFIG_PATH
+          gsed -i "s|pub static ref PROD_RENDEZVOUS_SERVER: RwLock<String> = RwLock::new(\"\".to_owned());|pub static ref PROD_RENDEZVOUS_SERVER: RwLock<String> = RwLock::new(\"$ID_SERVER\".to_owned());|g" $CONFIG_PATH
+          gsed -i 's|pub fn get_option(k: &str) -> String {|pub fn get_option(k: \&str) -> String {\n    if k == "api-server" {\n        return "'"$API_SERVER"'".to_owned();\n    }\n    if k == "enable-check-update" {\n        return "N".to_owned();\n    }|g' $CONFIG_PATH
           echo "Injection successful. Previewing line 222:"
-          sed -n '220,225p' $CONFIG_PATH
+          gsed -n '220,225p' $CONFIG_PATH
 
       - name: Install flutter
         uses: subosito/flutter-action@v2
@@ -644,13 +644,13 @@ jobs:
           RS_KEY: ${{ secrets.MY_RS_PUB_KEY }}
         run: |
           CONFIG_PATH="libs/hbb_common/src/config.rs"
-          sed -i "s/rs-ny\.rustdesk\.com/$ID_SERVER/g" $CONFIG_PATH
-          sed -i "s|pub const RS_PUB_KEY: \&str = \".*\";|pub const RS_PUB_KEY: \&str = \"$RS_KEY\";|g" $CONFIG_PATH
-          sed -i "s/pub const WS_RENDEZVOUS_PORT: i32 = 21118;/pub const WS_RENDEZVOUS_PORT: i32 = 55443;/g" $CONFIG_PATH
-          sed -i "s|pub static ref PROD_RENDEZVOUS_SERVER: RwLock<String> = RwLock::new(\"\".to_owned());|pub static ref PROD_RENDEZVOUS_SERVER: RwLock<String> = RwLock::new(\"$ID_SERVER\".to_owned());|g" $CONFIG_PATH
-          sed -i 's|pub fn get_option(k: &str) -> String {|pub fn get_option(k: \&str) -> String {\n    if k == "api-server" {\n        return "'"$API_SERVER"'".to_owned();\n    }|g' $CONFIG_PATH
+          gsed -i "s/rs-ny\.rustdesk\.com/$ID_SERVER/g" $CONFIG_PATH
+          gsed -i "s|pub const RS_PUB_KEY: \&str = \".*\";|pub const RS_PUB_KEY: \&str = \"$RS_KEY\";|g" $CONFIG_PATH
+          gsed -i "s/pub const WS_RENDEZVOUS_PORT: i32 = 21118;/pub const WS_RENDEZVOUS_PORT: i32 = 55443;/g" $CONFIG_PATH
+          gsed -i "s|pub static ref PROD_RENDEZVOUS_SERVER: RwLock<String> = RwLock::new(\"\".to_owned());|pub static ref PROD_RENDEZVOUS_SERVER: RwLock<String> = RwLock::new(\"$ID_SERVER\".to_owned());|g" $CONFIG_PATH
+          gsed -i 's|pub fn get_option(k: &str) -> String {|pub fn get_option(k: \&str) -> String {\n    if k == "api-server" {\n        return "'"$API_SERVER"'".to_owned();\n    }\n    if k == "enable-check-update" {\n        return "N".to_owned();\n    }|g' $CONFIG_PATH
           echo "Injection successful. Previewing line 222:"
-          sed -n '220,225p' $CONFIG_PATH
+          gsed -n '220,225p' $CONFIG_PATH
 
       - name: Import the codesign cert
         if: env.MACOS_P12_BASE64 != null
@@ -977,7 +977,7 @@ jobs:
           sed -i "s|pub const RS_PUB_KEY: \&str = \".*\";|pub const RS_PUB_KEY: \&str = \"$RS_KEY\";|g" $CONFIG_PATH
           sed -i "s/pub const WS_RENDEZVOUS_PORT: i32 = 21118;/pub const WS_RENDEZVOUS_PORT: i32 = 55443;/g" $CONFIG_PATH
           sed -i "s|pub static ref PROD_RENDEZVOUS_SERVER: RwLock<String> = RwLock::new(\"\".to_owned());|pub static ref PROD_RENDEZVOUS_SERVER: RwLock<String> = RwLock::new(\"$ID_SERVER\".to_owned());|g" $CONFIG_PATH
-          sed -i 's|pub fn get_option(k: &str) -> String {|pub fn get_option(k: \&str) -> String {\n    if k == "api-server" {\n        return "'"$API_SERVER"'".to_owned();\n    }|g' $CONFIG_PATH
+          sed -i 's|pub fn get_option(k: &str) -> String {|pub fn get_option(k: \&str) -> String {\n    if k == "api-server" {\n        return "'"$API_SERVER"'".to_owned();\n    }\n    if k == "enable-check-update" {\n        return "N".to_owned();\n    }|g' $CONFIG_PATH
           echo "Injection successful. Previewing line 222:"
           sed -n '220,225p' $CONFIG_PATH
 
@@ -1265,7 +1265,7 @@ jobs:
           sed -i "s|pub const RS_PUB_KEY: \&str = \".*\";|pub const RS_PUB_KEY: \&str = \"$RS_KEY\";|g" $CONFIG_PATH
           sed -i "s/pub const WS_RENDEZVOUS_PORT: i32 = 21118;/pub const WS_RENDEZVOUS_PORT: i32 = 55443;/g" $CONFIG_PATH
           sed -i "s|pub static ref PROD_RENDEZVOUS_SERVER: RwLock<String> = RwLock::new(\"\".to_owned());|pub static ref PROD_RENDEZVOUS_SERVER: RwLock<String> = RwLock::new(\"$ID_SERVER\".to_owned());|g" $CONFIG_PATH
-          sed -i 's|pub fn get_option(k: &str) -> String {|pub fn get_option(k: \&str) -> String {\n    if k == "api-server" {\n        return "'"$API_SERVER"'".to_owned();\n    }|g' $CONFIG_PATH
+          sed -i 's|pub fn get_option(k: &str) -> String {|pub fn get_option(k: \&str) -> String {\n    if k == "api-server" {\n        return "'"$API_SERVER"'".to_owned();\n    }\n    if k == "enable-check-update" {\n        return "N".to_owned();\n    }|g' $CONFIG_PATH
           echo "Injection successful. Previewing line 222:"
           sed -n '220,225p' $CONFIG_PATH
 
@@ -1446,7 +1446,7 @@ jobs:
           sed -i "s|pub const RS_PUB_KEY: \&str = \".*\";|pub const RS_PUB_KEY: \&str = \"$RS_KEY\";|g" $CONFIG_PATH
           sed -i "s/pub const WS_RENDEZVOUS_PORT: i32 = 21118;/pub const WS_RENDEZVOUS_PORT: i32 = 55443;/g" $CONFIG_PATH
           sed -i "s|pub static ref PROD_RENDEZVOUS_SERVER: RwLock<String> = RwLock::new(\"\".to_owned());|pub static ref PROD_RENDEZVOUS_SERVER: RwLock<String> = RwLock::new(\"$ID_SERVER\".to_owned());|g" $CONFIG_PATH
-          sed -i 's|pub fn get_option(k: &str) -> String {|pub fn get_option(k: \&str) -> String {\n    if k == "api-server" {\n        return "'"$API_SERVER"'".to_owned();\n    }|g' $CONFIG_PATH
+          sed -i 's|pub fn get_option(k: &str) -> String {|pub fn get_option(k: \&str) -> String {\n    if k == "api-server" {\n        return "'"$API_SERVER"'".to_owned();\n    }\n    if k == "enable-check-update" {\n        return "N".to_owned();\n    }|g' $CONFIG_PATH
           echo "Injection successful. Previewing line 222:"
           sed -n '220,225p' $CONFIG_PATH
 
@@ -1792,7 +1792,7 @@ jobs:
           sed -i "s|pub const RS_PUB_KEY: \&str = \".*\";|pub const RS_PUB_KEY: \&str = \"$RS_KEY\";|g" $CONFIG_PATH
           sed -i "s/pub const WS_RENDEZVOUS_PORT: i32 = 21118;/pub const WS_RENDEZVOUS_PORT: i32 = 55443;/g" $CONFIG_PATH
           sed -i "s|pub static ref PROD_RENDEZVOUS_SERVER: RwLock<String> = RwLock::new(\"\".to_owned());|pub static ref PROD_RENDEZVOUS_SERVER: RwLock<String> = RwLock::new(\"$ID_SERVER\".to_owned());|g" $CONFIG_PATH
-          sed -i 's|pub fn get_option(k: &str) -> String {|pub fn get_option(k: \&str) -> String {\n    if k == "api-server" {\n        return "'"$API_SERVER"'".to_owned();\n    }|g' $CONFIG_PATH
+          sed -i 's|pub fn get_option(k: &str) -> String {|pub fn get_option(k: \&str) -> String {\n    if k == "api-server" {\n        return "'"$API_SERVER"'".to_owned();\n    }\n    if k == "enable-check-update" {\n        return "N".to_owned();\n    }|g' $CONFIG_PATH
           echo "Injection successful. Previewing line 222:"
           sed -n '220,225p' $CONFIG_PATH
 
@@ -2010,7 +2010,7 @@ jobs:
           sed -i "s|pub const RS_PUB_KEY: \&str = \".*\";|pub const RS_PUB_KEY: \&str = \"$RS_KEY\";|g" $CONFIG_PATH
           sed -i "s/pub const WS_RENDEZVOUS_PORT: i32 = 21118;/pub const WS_RENDEZVOUS_PORT: i32 = 55443;/g" $CONFIG_PATH
           sed -i "s|pub static ref PROD_RENDEZVOUS_SERVER: RwLock<String> = RwLock::new(\"\".to_owned());|pub static ref PROD_RENDEZVOUS_SERVER: RwLock<String> = RwLock::new(\"$ID_SERVER\".to_owned());|g" $CONFIG_PATH
-          sed -i 's|pub fn get_option(k: &str) -> String {|pub fn get_option(k: \&str) -> String {\n    if k == "api-server" {\n        return "'"$API_SERVER"'".to_owned();\n    }|g' $CONFIG_PATH
+          sed -i 's|pub fn get_option(k: &str) -> String {|pub fn get_option(k: \&str) -> String {\n    if k == "api-server" {\n        return "'"$API_SERVER"'".to_owned();\n    }\n    if k == "enable-check-update" {\n        return "N".to_owned();\n    }|g' $CONFIG_PATH
           echo "Injection successful. Previewing line 222:"
           sed -n '220,225p' $CONFIG_PATH
 
@@ -2099,7 +2099,7 @@ jobs:
           sed -i "s|pub const RS_PUB_KEY: \&str = \".*\";|pub const RS_PUB_KEY: \&str = \"$RS_KEY\";|g" $CONFIG_PATH
           sed -i "s/pub const WS_RENDEZVOUS_PORT: i32 = 21118;/pub const WS_RENDEZVOUS_PORT: i32 = 55443;/g" $CONFIG_PATH
           sed -i "s|pub static ref PROD_RENDEZVOUS_SERVER: RwLock<String> = RwLock::new(\"\".to_owned());|pub static ref PROD_RENDEZVOUS_SERVER: RwLock<String> = RwLock::new(\"$ID_SERVER\".to_owned());|g" $CONFIG_PATH
-          sed -i 's|pub fn get_option(k: &str) -> String {|pub fn get_option(k: \&str) -> String {\n    if k == "api-server" {\n        return "'"$API_SERVER"'".to_owned();\n    }|g' $CONFIG_PATH
+          sed -i 's|pub fn get_option(k: &str) -> String {|pub fn get_option(k: \&str) -> String {\n    if k == "api-server" {\n        return "'"$API_SERVER"'".to_owned();\n    }\n    if k == "enable-check-update" {\n        return "N".to_owned();\n    }|g' $CONFIG_PATH
           echo "Injection successful. Previewing line 222:"
           sed -n '220,225p' $CONFIG_PATH
 
@@ -2176,7 +2176,7 @@ jobs:
           sed -i "s|pub const RS_PUB_KEY: \&str = \".*\";|pub const RS_PUB_KEY: \&str = \"$RS_KEY\";|g" $CONFIG_PATH
           sed -i "s/pub const WS_RENDEZVOUS_PORT: i32 = 21118;/pub const WS_RENDEZVOUS_PORT: i32 = 55443;/g" $CONFIG_PATH
           sed -i "s|pub static ref PROD_RENDEZVOUS_SERVER: RwLock<String> = RwLock::new(\"\".to_owned());|pub static ref PROD_RENDEZVOUS_SERVER: RwLock<String> = RwLock::new(\"$ID_SERVER\".to_owned());|g" $CONFIG_PATH
-          sed -i 's|pub fn get_option(k: &str) -> String {|pub fn get_option(k: \&str) -> String {\n    if k == "api-server" {\n        return "'"$API_SERVER"'".to_owned();\n    }|g' $CONFIG_PATH
+          sed -i 's|pub fn get_option(k: &str) -> String {|pub fn get_option(k: \&str) -> String {\n    if k == "api-server" {\n        return "'"$API_SERVER"'".to_owned();\n    }\n    if k == "enable-check-update" {\n        return "N".to_owned();\n    }|g' $CONFIG_PATH
           echo "Injection successful. Previewing line 222:"
           sed -n '220,225p' $CONFIG_PATH
 
