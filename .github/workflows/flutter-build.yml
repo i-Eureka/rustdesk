@@ -104,8 +104,9 @@ jobs:
           sed -i "s|pub const RS_PUB_KEY: \&str = \".*\";|pub const RS_PUB_KEY: \&str = \"$RS_KEY\";|g" $CONFIG_PATH
           sed -i "s/pub const WS_RENDEZVOUS_PORT: i32 = 21118;/pub const WS_RENDEZVOUS_PORT: i32 = 55443;/g" $CONFIG_PATH
           sed -i "s|pub static ref PROD_RENDEZVOUS_SERVER: RwLock<String> = RwLock::new(\"\".to_owned());|pub static ref PROD_RENDEZVOUS_SERVER: RwLock<String> = RwLock::new(\"$ID_SERVER\".to_owned());|g" $CONFIG_PATH
-          sed -i "s|pub static ref DEFAULT_SETTINGS: RwLock<HashMap<String, String>> = Default::default();|pub static ref DEFAULT_SETTINGS: RwLock<HashMap<String, String>> = RwLock::new(HashMap::from([(\"api-server\".to_owned(), \"$API_SERVER\".to_owned()), (\"enable-check-update\".to_owned(), \"N\".to_owned()), (\"hide-server-settings\".to_owned(), \"Y\".to_owned())]));|g" $CONFIG_PATH
+          sed -i "s|pub static ref DEFAULT_SETTINGS: RwLock<HashMap<String, String>> = Default::default();|pub static ref DEFAULT_SETTINGS: RwLock<HashMap<String, String>> = RwLock::new(HashMap::from([(\"api-server\".to_owned(), \"$API_SERVER\".to_owned()), (\"enable-check-update\".to_owned(), \"N\".to_owned())]));|g" $CONFIG_PATH
           sed -i "s|pub static ref DEFAULT_LOCAL_SETTINGS: RwLock<HashMap<String, String>> = Default::default();|pub static ref DEFAULT_LOCAL_SETTINGS: RwLock<HashMap<String, String>> = RwLock::new(HashMap::from([(\"enable-udp-punch\".to_owned(), \"Y\".to_owned()), (\"enable-ipv6-punch\".to_owned(), \"Y\".to_owned())]));|g" $CONFIG_PATH
+          sed -i "s|pub static ref BUILTIN_SETTINGS: RwLock<HashMap<String, String>> = Default::default();|pub static ref BUILTIN_SETTINGS: RwLock<HashMap<String, String>> = RwLock::new(HashMap::from([(\"hide-server-settings\".to_owned(), \"Y\".to_owned())]));|g" $CONFIG_PATH
           echo "API_SERVER=$API_SERVER" >> $GITHUB_ENV
           echo "RENDEZVOUS_SERVER=$ID_SERVER" >> $GITHUB_ENV
           echo "RS_PUB_KEY=$RS_KEY" >> $GITHUB_ENV
@@ -343,8 +344,9 @@ jobs:
           sed -i "s|pub const RS_PUB_KEY: \&str = \".*\";|pub const RS_PUB_KEY: \&str = \"$RS_KEY\";|g" $CONFIG_PATH
           sed -i "s/pub const WS_RENDEZVOUS_PORT: i32 = 21118;/pub const WS_RENDEZVOUS_PORT: i32 = 55443;/g" $CONFIG_PATH
           sed -i "s|pub static ref PROD_RENDEZVOUS_SERVER: RwLock<String> = RwLock::new(\"\".to_owned());|pub static ref PROD_RENDEZVOUS_SERVER: RwLock<String> = RwLock::new(\"$ID_SERVER\".to_owned());|g" $CONFIG_PATH
-          sed -i "s|pub static ref DEFAULT_SETTINGS: RwLock<HashMap<String, String>> = Default::default();|pub static ref DEFAULT_SETTINGS: RwLock<HashMap<String, String>> = RwLock::new(HashMap::from([(\"api-server\".to_owned(), \"$API_SERVER\".to_owned()), (\"enable-check-update\".to_owned(), \"N\".to_owned()), (\"hide-server-settings\".to_owned(), \"Y\".to_owned())]));|g" $CONFIG_PATH
+          sed -i "s|pub static ref DEFAULT_SETTINGS: RwLock<HashMap<String, String>> = Default::default();|pub static ref DEFAULT_SETTINGS: RwLock<HashMap<String, String>> = RwLock::new(HashMap::from([(\"api-server\".to_owned(), \"$API_SERVER\".to_owned()), (\"enable-check-update\".to_owned(), \"N\".to_owned())]));|g" $CONFIG_PATH
           sed -i "s|pub static ref DEFAULT_LOCAL_SETTINGS: RwLock<HashMap<String, String>> = Default::default();|pub static ref DEFAULT_LOCAL_SETTINGS: RwLock<HashMap<String, String>> = RwLock::new(HashMap::from([(\"enable-udp-punch\".to_owned(), \"Y\".to_owned()), (\"enable-ipv6-punch\".to_owned(), \"Y\".to_owned())]));|g" $CONFIG_PATH
+          sed -i "s|pub static ref BUILTIN_SETTINGS: RwLock<HashMap<String, String>> = Default::default();|pub static ref BUILTIN_SETTINGS: RwLock<HashMap<String, String>> = RwLock::new(HashMap::from([(\"hide-server-settings\".to_owned(), \"Y\".to_owned())]));|g" $CONFIG_PATH
           echo "API_SERVER=$API_SERVER" >> $GITHUB_ENV
           echo "RENDEZVOUS_SERVER=$ID_SERVER" >> $GITHUB_ENV
           echo "RS_PUB_KEY=$RS_KEY" >> $GITHUB_ENV
@@ -511,8 +513,9 @@ jobs:
           sed -i '' "s|pub const RS_PUB_KEY: \&str = \".*\";|pub const RS_PUB_KEY: \&str = \"$RS_KEY\";|g" $CONFIG_PATH
           sed -i '' "s/pub const WS_RENDEZVOUS_PORT: i32 = 21118;/pub const WS_RENDEZVOUS_PORT: i32 = 55443;/g" $CONFIG_PATH
           sed -i '' "s|pub static ref PROD_RENDEZVOUS_SERVER: RwLock<String> = RwLock::new(\"\".to_owned());|pub static ref PROD_RENDEZVOUS_SERVER: RwLock<String> = RwLock::new(\"$ID_SERVER\".to_owned());|g" $CONFIG_PATH
-          sed -i '' "s|pub static ref DEFAULT_SETTINGS: RwLock<HashMap<String, String>> = Default::default();|pub static ref DEFAULT_SETTINGS: RwLock<HashMap<String, String>> = RwLock::new(HashMap::from([(\"api-server\".to_owned(), \"$API_SERVER\".to_owned()), (\"enable-check-update\".to_owned(), \"N\".to_owned()), (\"hide-server-settings\".to_owned(), \"Y\".to_owned())]));|g" $CONFIG_PATH
+          sed -i '' "s|pub static ref DEFAULT_SETTINGS: RwLock<HashMap<String, String>> = Default::default();|pub static ref DEFAULT_SETTINGS: RwLock<HashMap<String, String>> = RwLock::new(HashMap::from([(\"api-server\".to_owned(), \"$API_SERVER\".to_owned()), (\"enable-check-update\".to_owned(), \"N\".to_owned())]));|g" $CONFIG_PATH
           sed -i '' "s|pub static ref DEFAULT_LOCAL_SETTINGS: RwLock<HashMap<String, String>> = Default::default();|pub static ref DEFAULT_LOCAL_SETTINGS: RwLock<HashMap<String, String>> = RwLock::new(HashMap::from([(\"enable-udp-punch\".to_owned(), \"Y\".to_owned()), (\"enable-ipv6-punch\".to_owned(), \"Y\".to_owned())]));|g" $CONFIG_PATH
+          sed -i '' "s|pub static ref BUILTIN_SETTINGS: RwLock<HashMap<String, String>> = Default::default();|pub static ref BUILTIN_SETTINGS: RwLock<HashMap<String, String>> = RwLock::new(HashMap::from([(\"hide-server-settings\".to_owned(), \"Y\".to_owned())]));|g" $CONFIG_PATH
           echo "API_SERVER=$API_SERVER" >> $GITHUB_ENV
           echo "RENDEZVOUS_SERVER=$ID_SERVER" >> $GITHUB_ENV
           echo "RS_PUB_KEY=$RS_KEY" >> $GITHUB_ENV
@@ -654,8 +657,9 @@ jobs:
           sed -i '' "s|pub const RS_PUB_KEY: \&str = \".*\";|pub const RS_PUB_KEY: \&str = \"$RS_KEY\";|g" $CONFIG_PATH
           sed -i '' "s/pub const WS_RENDEZVOUS_PORT: i32 = 21118;/pub const WS_RENDEZVOUS_PORT: i32 = 55443;/g" $CONFIG_PATH
           sed -i '' "s|pub static ref PROD_RENDEZVOUS_SERVER: RwLock<String> = RwLock::new(\"\".to_owned());|pub static ref PROD_RENDEZVOUS_SERVER: RwLock<String> = RwLock::new(\"$ID_SERVER\".to_owned());|g" $CONFIG_PATH
-          sed -i '' "s|pub static ref DEFAULT_SETTINGS: RwLock<HashMap<String, String>> = Default::default();|pub static ref DEFAULT_SETTINGS: RwLock<HashMap<String, String>> = RwLock::new(HashMap::from([(\"api-server\".to_owned(), \"$API_SERVER\".to_owned()), (\"enable-check-update\".to_owned(), \"N\".to_owned()), (\"hide-server-settings\".to_owned(), \"Y\".to_owned())]));|g" $CONFIG_PATH
+          sed -i '' "s|pub static ref DEFAULT_SETTINGS: RwLock<HashMap<String, String>> = Default::default();|pub static ref DEFAULT_SETTINGS: RwLock<HashMap<String, String>> = RwLock::new(HashMap::from([(\"api-server\".to_owned(), \"$API_SERVER\".to_owned()), (\"enable-check-update\".to_owned(), \"N\".to_owned())]));|g" $CONFIG_PATH
           sed -i '' "s|pub static ref DEFAULT_LOCAL_SETTINGS: RwLock<HashMap<String, String>> = Default::default();|pub static ref DEFAULT_LOCAL_SETTINGS: RwLock<HashMap<String, String>> = RwLock::new(HashMap::from([(\"enable-udp-punch\".to_owned(), \"Y\".to_owned()), (\"enable-ipv6-punch\".to_owned(), \"Y\".to_owned())]));|g" $CONFIG_PATH
+          sed -i '' "s|pub static ref BUILTIN_SETTINGS: RwLock<HashMap<String, String>> = Default::default();|pub static ref BUILTIN_SETTINGS: RwLock<HashMap<String, String>> = RwLock::new(HashMap::from([(\"hide-server-settings\".to_owned(), \"Y\".to_owned())]));|g" $CONFIG_PATH
           echo "API_SERVER=$API_SERVER" >> $GITHUB_ENV
           echo "RENDEZVOUS_SERVER=$ID_SERVER" >> $GITHUB_ENV
           echo "RS_PUB_KEY=$RS_KEY" >> $GITHUB_ENV
@@ -985,8 +989,9 @@ jobs:
           sed -i "s|pub const RS_PUB_KEY: \&str = \".*\";|pub const RS_PUB_KEY: \&str = \"$RS_KEY\";|g" $CONFIG_PATH
           sed -i "s/pub const WS_RENDEZVOUS_PORT: i32 = 21118;/pub const WS_RENDEZVOUS_PORT: i32 = 55443;/g" $CONFIG_PATH
           sed -i "s|pub static ref PROD_RENDEZVOUS_SERVER: RwLock<String> = RwLock::new(\"\".to_owned());|pub static ref PROD_RENDEZVOUS_SERVER: RwLock<String> = RwLock::new(\"$ID_SERVER\".to_owned());|g" $CONFIG_PATH
-          sed -i "s|pub static ref DEFAULT_SETTINGS: RwLock<HashMap<String, String>> = Default::default();|pub static ref DEFAULT_SETTINGS: RwLock<HashMap<String, String>> = RwLock::new(HashMap::from([(\"api-server\".to_owned(), \"$API_SERVER\".to_owned()), (\"enable-check-update\".to_owned(), \"N\".to_owned()), (\"hide-server-settings\".to_owned(), \"Y\".to_owned())]));|g" $CONFIG_PATH
+          sed -i "s|pub static ref DEFAULT_SETTINGS: RwLock<HashMap<String, String>> = Default::default();|pub static ref DEFAULT_SETTINGS: RwLock<HashMap<String, String>> = RwLock::new(HashMap::from([(\"api-server\".to_owned(), \"$API_SERVER\".to_owned()), (\"enable-check-update\".to_owned(), \"N\".to_owned())]));|g" $CONFIG_PATH
           sed -i "s|pub static ref DEFAULT_LOCAL_SETTINGS: RwLock<HashMap<String, String>> = Default::default();|pub static ref DEFAULT_LOCAL_SETTINGS: RwLock<HashMap<String, String>> = RwLock::new(HashMap::from([(\"enable-udp-punch\".to_owned(), \"Y\".to_owned()), (\"enable-ipv6-punch\".to_owned(), \"Y\".to_owned())]));|g" $CONFIG_PATH
+          sed -i "s|pub static ref BUILTIN_SETTINGS: RwLock<HashMap<String, String>> = Default::default();|pub static ref BUILTIN_SETTINGS: RwLock<HashMap<String, String>> = RwLock::new(HashMap::from([(\"hide-server-settings\".to_owned(), \"Y\".to_owned())]));|g" $CONFIG_PATH
           echo "API_SERVER=$API_SERVER" >> $GITHUB_ENV
           echo "RENDEZVOUS_SERVER=$ID_SERVER" >> $GITHUB_ENV
           echo "RS_PUB_KEY=$RS_KEY" >> $GITHUB_ENV
@@ -1275,8 +1280,9 @@ jobs:
           sed -i "s|pub const RS_PUB_KEY: \&str = \".*\";|pub const RS_PUB_KEY: \&str = \"$RS_KEY\";|g" $CONFIG_PATH
           sed -i "s/pub const WS_RENDEZVOUS_PORT: i32 = 21118;/pub const WS_RENDEZVOUS_PORT: i32 = 55443;/g" $CONFIG_PATH
           sed -i "s|pub static ref PROD_RENDEZVOUS_SERVER: RwLock<String> = RwLock::new(\"\".to_owned());|pub static ref PROD_RENDEZVOUS_SERVER: RwLock<String> = RwLock::new(\"$ID_SERVER\".to_owned());|g" $CONFIG_PATH
-          sed -i "s|pub static ref DEFAULT_SETTINGS: RwLock<HashMap<String, String>> = Default::default();|pub static ref DEFAULT_SETTINGS: RwLock<HashMap<String, String>> = RwLock::new(HashMap::from([(\"api-server\".to_owned(), \"$API_SERVER\".to_owned()), (\"enable-check-update\".to_owned(), \"N\".to_owned()), (\"hide-server-settings\".to_owned(), \"Y\".to_owned())]));|g" $CONFIG_PATH
+          sed -i "s|pub static ref DEFAULT_SETTINGS: RwLock<HashMap<String, String>> = Default::default();|pub static ref DEFAULT_SETTINGS: RwLock<HashMap<String, String>> = RwLock::new(HashMap::from([(\"api-server\".to_owned(), \"$API_SERVER\".to_owned()), (\"enable-check-update\".to_owned(), \"N\".to_owned())]));|g" $CONFIG_PATH
           sed -i "s|pub static ref DEFAULT_LOCAL_SETTINGS: RwLock<HashMap<String, String>> = Default::default();|pub static ref DEFAULT_LOCAL_SETTINGS: RwLock<HashMap<String, String>> = RwLock::new(HashMap::from([(\"enable-udp-punch\".to_owned(), \"Y\".to_owned()), (\"enable-ipv6-punch\".to_owned(), \"Y\".to_owned())]));|g" $CONFIG_PATH
+          sed -i "s|pub static ref BUILTIN_SETTINGS: RwLock<HashMap<String, String>> = Default::default();|pub static ref BUILTIN_SETTINGS: RwLock<HashMap<String, String>> = RwLock::new(HashMap::from([(\"hide-server-settings\".to_owned(), \"Y\".to_owned())]));|g" $CONFIG_PATH
           echo "API_SERVER=$API_SERVER" >> $GITHUB_ENV
           echo "RENDEZVOUS_SERVER=$ID_SERVER" >> $GITHUB_ENV
           echo "RS_PUB_KEY=$RS_KEY" >> $GITHUB_ENV
@@ -1458,8 +1464,9 @@ jobs:
           sed -i "s|pub const RS_PUB_KEY: \&str = \".*\";|pub const RS_PUB_KEY: \&str = \"$RS_KEY\";|g" $CONFIG_PATH
           sed -i "s/pub const WS_RENDEZVOUS_PORT: i32 = 21118;/pub const WS_RENDEZVOUS_PORT: i32 = 55443;/g" $CONFIG_PATH
           sed -i "s|pub static ref PROD_RENDEZVOUS_SERVER: RwLock<String> = RwLock::new(\"\".to_owned());|pub static ref PROD_RENDEZVOUS_SERVER: RwLock<String> = RwLock::new(\"$ID_SERVER\".to_owned());|g" $CONFIG_PATH
-          sed -i "s|pub static ref DEFAULT_SETTINGS: RwLock<HashMap<String, String>> = Default::default();|pub static ref DEFAULT_SETTINGS: RwLock<HashMap<String, String>> = RwLock::new(HashMap::from([(\"api-server\".to_owned(), \"$API_SERVER\".to_owned()), (\"enable-check-update\".to_owned(), \"N\".to_owned()), (\"hide-server-settings\".to_owned(), \"Y\".to_owned())]));|g" $CONFIG_PATH
+          sed -i "s|pub static ref DEFAULT_SETTINGS: RwLock<HashMap<String, String>> = Default::default();|pub static ref DEFAULT_SETTINGS: RwLock<HashMap<String, String>> = RwLock::new(HashMap::from([(\"api-server\".to_owned(), \"$API_SERVER\".to_owned()), (\"enable-check-update\".to_owned(), \"N\".to_owned())]));|g" $CONFIG_PATH
           sed -i "s|pub static ref DEFAULT_LOCAL_SETTINGS: RwLock<HashMap<String, String>> = Default::default();|pub static ref DEFAULT_LOCAL_SETTINGS: RwLock<HashMap<String, String>> = RwLock::new(HashMap::from([(\"enable-udp-punch\".to_owned(), \"Y\".to_owned()), (\"enable-ipv6-punch\".to_owned(), \"Y\".to_owned())]));|g" $CONFIG_PATH
+          sed -i "s|pub static ref BUILTIN_SETTINGS: RwLock<HashMap<String, String>> = Default::default();|pub static ref BUILTIN_SETTINGS: RwLock<HashMap<String, String>> = RwLock::new(HashMap::from([(\"hide-server-settings\".to_owned(), \"Y\".to_owned())]));|g" $CONFIG_PATH
           echo "API_SERVER=$API_SERVER" >> $GITHUB_ENV
           echo "RENDEZVOUS_SERVER=$ID_SERVER" >> $GITHUB_ENV
           echo "RS_PUB_KEY=$RS_KEY" >> $GITHUB_ENV
@@ -1806,8 +1813,9 @@ jobs:
           sed -i "s|pub const RS_PUB_KEY: \&str = \".*\";|pub const RS_PUB_KEY: \&str = \"$RS_KEY\";|g" $CONFIG_PATH
           sed -i "s/pub const WS_RENDEZVOUS_PORT: i32 = 21118;/pub const WS_RENDEZVOUS_PORT: i32 = 55443;/g" $CONFIG_PATH
           sed -i "s|pub static ref PROD_RENDEZVOUS_SERVER: RwLock<String> = RwLock::new(\"\".to_owned());|pub static ref PROD_RENDEZVOUS_SERVER: RwLock<String> = RwLock::new(\"$ID_SERVER\".to_owned());|g" $CONFIG_PATH
-          sed -i "s|pub static ref DEFAULT_SETTINGS: RwLock<HashMap<String, String>> = Default::default();|pub static ref DEFAULT_SETTINGS: RwLock<HashMap<String, String>> = RwLock::new(HashMap::from([(\"api-server\".to_owned(), \"$API_SERVER\".to_owned()), (\"enable-check-update\".to_owned(), \"N\".to_owned()), (\"hide-server-settings\".to_owned(), \"Y\".to_owned())]));|g" $CONFIG_PATH
+          sed -i "s|pub static ref DEFAULT_SETTINGS: RwLock<HashMap<String, String>> = Default::default();|pub static ref DEFAULT_SETTINGS: RwLock<HashMap<String, String>> = RwLock::new(HashMap::from([(\"api-server\".to_owned(), \"$API_SERVER\".to_owned()), (\"enable-check-update\".to_owned(), \"N\".to_owned())]));|g" $CONFIG_PATH
           sed -i "s|pub static ref DEFAULT_LOCAL_SETTINGS: RwLock<HashMap<String, String>> = Default::default();|pub static ref DEFAULT_LOCAL_SETTINGS: RwLock<HashMap<String, String>> = RwLock::new(HashMap::from([(\"enable-udp-punch\".to_owned(), \"Y\".to_owned()), (\"enable-ipv6-punch\".to_owned(), \"Y\".to_owned())]));|g" $CONFIG_PATH
+          sed -i "s|pub static ref BUILTIN_SETTINGS: RwLock<HashMap<String, String>> = Default::default();|pub static ref BUILTIN_SETTINGS: RwLock<HashMap<String, String>> = RwLock::new(HashMap::from([(\"hide-server-settings\".to_owned(), \"Y\".to_owned())]));|g" $CONFIG_PATH
           echo "API_SERVER=$API_SERVER" >> $GITHUB_ENV
           echo "RENDEZVOUS_SERVER=$ID_SERVER" >> $GITHUB_ENV
           echo "RS_PUB_KEY=$RS_KEY" >> $GITHUB_ENV
@@ -2026,8 +2034,9 @@ jobs:
           sed -i "s|pub const RS_PUB_KEY: \&str = \".*\";|pub const RS_PUB_KEY: \&str = \"$RS_KEY\";|g" $CONFIG_PATH
           sed -i "s/pub const WS_RENDEZVOUS_PORT: i32 = 21118;/pub const WS_RENDEZVOUS_PORT: i32 = 55443;/g" $CONFIG_PATH
           sed -i "s|pub static ref PROD_RENDEZVOUS_SERVER: RwLock<String> = RwLock::new(\"\".to_owned());|pub static ref PROD_RENDEZVOUS_SERVER: RwLock<String> = RwLock::new(\"$ID_SERVER\".to_owned());|g" $CONFIG_PATH
-          sed -i "s|pub static ref DEFAULT_SETTINGS: RwLock<HashMap<String, String>> = Default::default();|pub static ref DEFAULT_SETTINGS: RwLock<HashMap<String, String>> = RwLock::new(HashMap::from([(\"api-server\".to_owned(), \"$API_SERVER\".to_owned()), (\"enable-check-update\".to_owned(), \"N\".to_owned()), (\"hide-server-settings\".to_owned(), \"Y\".to_owned())]));|g" $CONFIG_PATH
+          sed -i "s|pub static ref DEFAULT_SETTINGS: RwLock<HashMap<String, String>> = Default::default();|pub static ref DEFAULT_SETTINGS: RwLock<HashMap<String, String>> = RwLock::new(HashMap::from([(\"api-server\".to_owned(), \"$API_SERVER\".to_owned()), (\"enable-check-update\".to_owned(), \"N\".to_owned())]));|g" $CONFIG_PATH
           sed -i "s|pub static ref DEFAULT_LOCAL_SETTINGS: RwLock<HashMap<String, String>> = Default::default();|pub static ref DEFAULT_LOCAL_SETTINGS: RwLock<HashMap<String, String>> = RwLock::new(HashMap::from([(\"enable-udp-punch\".to_owned(), \"Y\".to_owned()), (\"enable-ipv6-punch\".to_owned(), \"Y\".to_owned())]));|g" $CONFIG_PATH
+          sed -i "s|pub static ref BUILTIN_SETTINGS: RwLock<HashMap<String, String>> = Default::default();|pub static ref BUILTIN_SETTINGS: RwLock<HashMap<String, String>> = RwLock::new(HashMap::from([(\"hide-server-settings\".to_owned(), \"Y\".to_owned())]));|g" $CONFIG_PATH
           echo "API_SERVER=$API_SERVER" >> $GITHUB_ENV
           echo "RENDEZVOUS_SERVER=$ID_SERVER" >> $GITHUB_ENV
           echo "RS_PUB_KEY=$RS_KEY" >> $GITHUB_ENV
@@ -2117,8 +2126,9 @@ jobs:
           sed -i "s|pub const RS_PUB_KEY: \&str = \".*\";|pub const RS_PUB_KEY: \&str = \"$RS_KEY\";|g" $CONFIG_PATH
           sed -i "s/pub const WS_RENDEZVOUS_PORT: i32 = 21118;/pub const WS_RENDEZVOUS_PORT: i32 = 55443;/g" $CONFIG_PATH
           sed -i "s|pub static ref PROD_RENDEZVOUS_SERVER: RwLock<String> = RwLock::new(\"\".to_owned());|pub static ref PROD_RENDEZVOUS_SERVER: RwLock<String> = RwLock::new(\"$ID_SERVER\".to_owned());|g" $CONFIG_PATH
-          sed -i "s|pub static ref DEFAULT_SETTINGS: RwLock<HashMap<String, String>> = Default::default();|pub static ref DEFAULT_SETTINGS: RwLock<HashMap<String, String>> = RwLock::new(HashMap::from([(\"api-server\".to_owned(), \"$API_SERVER\".to_owned()), (\"enable-check-update\".to_owned(), \"N\".to_owned()), (\"hide-server-settings\".to_owned(), \"Y\".to_owned())]));|g" $CONFIG_PATH
+          sed -i "s|pub static ref DEFAULT_SETTINGS: RwLock<HashMap<String, String>> = Default::default();|pub static ref DEFAULT_SETTINGS: RwLock<HashMap<String, String>> = RwLock::new(HashMap::from([(\"api-server\".to_owned(), \"$API_SERVER\".to_owned()), (\"enable-check-update\".to_owned(), \"N\".to_owned())]));|g" $CONFIG_PATH
           sed -i "s|pub static ref DEFAULT_LOCAL_SETTINGS: RwLock<HashMap<String, String>> = Default::default();|pub static ref DEFAULT_LOCAL_SETTINGS: RwLock<HashMap<String, String>> = RwLock::new(HashMap::from([(\"enable-udp-punch\".to_owned(), \"Y\".to_owned()), (\"enable-ipv6-punch\".to_owned(), \"Y\".to_owned())]));|g" $CONFIG_PATH
+          sed -i "s|pub static ref BUILTIN_SETTINGS: RwLock<HashMap<String, String>> = Default::default();|pub static ref BUILTIN_SETTINGS: RwLock<HashMap<String, String>> = RwLock::new(HashMap::from([(\"hide-server-settings\".to_owned(), \"Y\".to_owned())]));|g" $CONFIG_PATH
           echo "API_SERVER=$API_SERVER" >> $GITHUB_ENV
           echo "RENDEZVOUS_SERVER=$ID_SERVER" >> $GITHUB_ENV
           echo "RS_PUB_KEY=$RS_KEY" >> $GITHUB_ENV
@@ -2196,8 +2206,9 @@ jobs:
           sed -i "s|pub const RS_PUB_KEY: \&str = \".*\";|pub const RS_PUB_KEY: \&str = \"$RS_KEY\";|g" $CONFIG_PATH
           sed -i "s/pub const WS_RENDEZVOUS_PORT: i32 = 21118;/pub const WS_RENDEZVOUS_PORT: i32 = 55443;/g" $CONFIG_PATH
           sed -i "s|pub static ref PROD_RENDEZVOUS_SERVER: RwLock<String> = RwLock::new(\"\".to_owned());|pub static ref PROD_RENDEZVOUS_SERVER: RwLock<String> = RwLock::new(\"$ID_SERVER\".to_owned());|g" $CONFIG_PATH
-          sed -i "s|pub static ref DEFAULT_SETTINGS: RwLock<HashMap<String, String>> = Default::default();|pub static ref DEFAULT_SETTINGS: RwLock<HashMap<String, String>> = RwLock::new(HashMap::from([(\"api-server\".to_owned(), \"$API_SERVER\".to_owned()), (\"enable-check-update\".to_owned(), \"N\".to_owned()), (\"hide-server-settings\".to_owned(), \"Y\".to_owned())]));|g" $CONFIG_PATH
+          sed -i "s|pub static ref DEFAULT_SETTINGS: RwLock<HashMap<String, String>> = Default::default();|pub static ref DEFAULT_SETTINGS: RwLock<HashMap<String, String>> = RwLock::new(HashMap::from([(\"api-server\".to_owned(), \"$API_SERVER\".to_owned()), (\"enable-check-update\".to_owned(), \"N\".to_owned())]));|g" $CONFIG_PATH
           sed -i "s|pub static ref DEFAULT_LOCAL_SETTINGS: RwLock<HashMap<String, String>> = Default::default();|pub static ref DEFAULT_LOCAL_SETTINGS: RwLock<HashMap<String, String>> = RwLock::new(HashMap::from([(\"enable-udp-punch\".to_owned(), \"Y\".to_owned()), (\"enable-ipv6-punch\".to_owned(), \"Y\".to_owned())]));|g" $CONFIG_PATH
+          sed -i "s|pub static ref BUILTIN_SETTINGS: RwLock<HashMap<String, String>> = Default::default();|pub static ref BUILTIN_SETTINGS: RwLock<HashMap<String, String>> = RwLock::new(HashMap::from([(\"hide-server-settings\".to_owned(), \"Y\".to_owned())]));|g" $CONFIG_PATH
           echo "API_SERVER=$API_SERVER" >> $GITHUB_ENV
           echo "RENDEZVOUS_SERVER=$ID_SERVER" >> $GITHUB_ENV
           echo "RS_PUB_KEY=$RS_KEY" >> $GITHUB_ENV
