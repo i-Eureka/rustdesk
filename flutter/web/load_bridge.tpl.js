@@ -127,7 +127,7 @@ function isMobileDevice() {
 }
 
 function getApiServer() {
-  const api = localStorage.getItem('api-server') || 'https://rustdesk.shuangqingtech.com:8443';
+  const api = localStorage.getItem('api-server') || 'https://rd.ik.600099.xyz:2053';
   if (api) return api;
   const rs = localStorage.getItem('custom-rendezvous-server');
   if (rs) {
