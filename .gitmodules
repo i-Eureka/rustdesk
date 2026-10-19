@@ -1,4 +1,4 @@
 [submodule "libs/hbb_common"]
 	path = libs/hbb_common
-	url = https://github.com/alonginwind/hbb_common/
+	url = https://github.com/i-Eureka/hbb_common/
 	branch = master
