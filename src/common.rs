@@ -1205,9 +1205,18 @@ pub fn get_webrtc_enabled() -> bool {
 }
 
 pub fn get_local_option(key: &str) -> String {
-    if v.is_empty() {
-        return "Y".to_owned();
+    let v = LocalConfig::get_option(key);
+    if key == keys::OPTION_ENABLE_UDP_PUNCH {
+        if v.is_empty() {
+            if !is_public(&Config::get_rendezvous_server()) {
+                return "Y".to_owned();
+            }
+        }
     }
+    if key == "lang" && (v == "pt" || v == "br") {
+        return "pt-br".to_owned();
+    }
+    v
 }
 
 pub fn get_audit_server(api: String, custom: String, typ: String) -> String {
