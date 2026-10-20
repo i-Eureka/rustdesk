@@ -1204,6 +1204,12 @@ pub fn get_webrtc_enabled() -> bool {
     )
 }
 
+pub fn get_local_option(key: &str) -> String {
+    if v.is_empty() {
+        return "Y".to_owned();
+    }
+}
+
 pub fn get_audit_server(api: String, custom: String, typ: String) -> String {
     let url = get_api_server(api, custom);
     if url.is_empty() || is_public(&url) {
