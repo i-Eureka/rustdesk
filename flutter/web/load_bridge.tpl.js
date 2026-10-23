@@ -137,6 +137,18 @@ function getApiServer() {
   return 'http://127.0.0.1:21114';
 }
 
+// 兼容 Web 登录页面和 Flutter 本地配置中的 Token 存储位置
+function getAccessToken() {
+  const optionToken = localStorage.getItem('option:local:access_token');
+  if (optionToken) return optionToken;
+
+  const token = localStorage.getItem('access_token') || '';
+  if (token) {
+    localStorage.setItem('option:local:access_token', token);
+  }
+  return token;
+}
+
 // USB HID usage ID -> ControlKey enum value (for special keys without character)
 const USB_HID_TO_CONTROL_KEY = {
   40: 27,  // Enter -> Return
@@ -2040,7 +2052,7 @@ function startSessionConnection(peerId, connType, password, isFileTransfer, isVi
       await sessionState._offerPromise;
     }
     const key = getRsKey();
-    const token = localStorage.getItem('option:local:access_token') || '';
+    const token = getAccessToken();
     console.log('[WebBridge] PunchHoleRequest key:', key ? key.substring(0, 8) + '...' : '(empty)',
                 'keyLen:', key.length, 'token:', token ? 'present' : '(empty)',
                 'webrtcOffer:', sessionState.webrtcOffer ? sessionState.webrtcOffer.length + ' bytes' : 'none');
@@ -2216,7 +2228,7 @@ function registerRelaySession() {
   }, 15000);
   ws.onopen = () => {
     const key = getRsKey();
-    const token = localStorage.getItem('option:local:access_token') || '';
+    const token = getAccessToken();
     const inner = pbConcat(
       pbString(1, sessionState.peerId),
       pbString(2, sessionState.uuid),
@@ -4037,6 +4049,9 @@ window.getByName = function(name, arg) {
         return defaultUserOption(arg);
       }
       case 'option:local': {
+        if (arg === 'access_token') {
+          return getAccessToken();
+        }
         const v = localStorage.getItem(`option:local:${arg}`);
         if (v !== null && v !== '') return v;
         // Web must use Flutter grab mode since JS grab mode requires the removed WASM module
